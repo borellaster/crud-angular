@@ -1,0 +1,55 @@
+<div class="client-list-page">
+  <mat-card>
+    <div class="header">
+      <div>
+        <h2>Clientes</h2>
+        <p>Gerencie os clientes cadastrados.</p>
+      </div>
+
+      <button mat-flat-button color="primary" routerLink="/clientes/novo">
+        <mat-icon>add</mat-icon>
+        Novo cliente
+      </button>
+    </div>
+  </mat-card>
+
+  <mat-card>
+    <div class="table-wrapper">
+      <table mat-table [dataSource]="clients" class="clients-table">
+        <ng-container matColumnDef="fullName">
+          <th mat-header-cell *matHeaderCellDef>Nome completo</th>
+          <td mat-cell *matCellDef="let client">{{ client.fullName }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="birthDate">
+          <th mat-header-cell *matHeaderCellDef>Data nascimento</th>
+          <td mat-cell *matCellDef="let client">{{ client.birthDate | date: 'dd/MM/yyyy' }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef>Email</th>
+          <td mat-cell *matCellDef="let client">{{ client.email }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef>Acoes</th>
+          <td mat-cell *matCellDef="let client" class="actions">
+            <button
+              mat-icon-button
+              aria-label="Editar cliente"
+              [routerLink]="['/clientes/editar', client.id]"
+            >
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button aria-label="Remover cliente" (click)="remove(client.id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    </div>
+  </mat-card>
+</div>

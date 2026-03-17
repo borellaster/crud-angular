@@ -1,0 +1,32 @@
+<div class="client-form-page">
+  <mat-card>
+    <h2>{{ isEditMode ? 'Editar cliente' : 'Novo cliente' }}</h2>
+    <p>{{ isEditMode ? 'Atualize os dados do cliente.' : 'Preencha os dados para cadastrar.' }}</p>
+
+    <form [formGroup]="form" class="client-form" (ngSubmit)="save()">
+      <mat-form-field appearance="outline">
+        <mat-label>Nome completo</mat-label>
+        <input matInput formControlName="fullName" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Data nascimento</mat-label>
+        <input matInput [matDatepicker]="birthPicker" formControlName="birthDate" />
+        <mat-datepicker-toggle matSuffix [for]="birthPicker" />
+        <mat-datepicker #birthPicker />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" />
+      </mat-form-field>
+
+      <div class="form-actions">
+        <button mat-flat-button color="primary" type="submit">
+          {{ isEditMode ? 'Salvar alteracoes' : 'Cadastrar cliente' }}
+        </button>
+        <button mat-button type="button" (click)="cancel()">Cancelar</button>
+      </div>
+    </form>
+  </mat-card>
+</div>

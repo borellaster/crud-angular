@@ -1,0 +1,32 @@
+.client-list-page {
+  display: grid;
+  gap: 16px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.header h2 {
+  margin: 0;
+}
+
+.header p {
+  margin: 4px 0 0;
+  opacity: 0.9;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.clients-table {
+  width: 100%;
+}
+
+.actions {
+  white-space: nowrap;
+}

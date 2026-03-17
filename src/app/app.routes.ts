@@ -1,6 +1,8 @@
 import { Routes } from '@angular/router';
 import { authGuard } from './guards/auth.guard';
-import { ClientsPage } from './pages/clients/clients.page';
+import { AppShellComponent } from './layout/app-shell.component';
+import { ClientFormPage } from './pages/clients/client-form/client-form.page';
+import { ClientListPage } from './pages/clients/client-list/client-list.page';
 import { LoginPage } from './pages/login/login.page';
 
 export const routes: Routes = [
@@ -9,14 +11,28 @@ export const routes: Routes = [
     component: LoginPage,
   },
   {
-    path: 'clientes',
-    component: ClientsPage,
-    canActivate: [authGuard],
-  },
-  {
     path: '',
-    pathMatch: 'full',
-    redirectTo: 'login',
+    component: AppShellComponent,
+    canActivate: [authGuard],
+    children: [
+      {
+        path: 'clientes',
+        component: ClientListPage,
+      },
+      {
+        path: 'clientes/novo',
+        component: ClientFormPage,
+      },
+      {
+        path: 'clientes/editar/:id',
+        component: ClientFormPage,
+      },
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'clientes',
+      },
+    ],
   },
   {
     path: '**',

@@ -1,0 +1,22 @@
+.client-form-page {
+  max-width: 860px;
+}
+
+h2 {
+  margin: 0;
+}
+
+p {
+  margin: 6px 0 16px;
+  opacity: 0.9;
+}
+
+.client-form {
+  display: grid;
+  gap: 12px;
+}
+
+.form-actions {
+  display: flex;
+  gap: 8px;
+}

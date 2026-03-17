@@ -1,34 +1,37 @@
 <div class="login-wrapper">
-  <div class="login-card">
+  <mat-card class="login-card">
     <h1>Login</h1>
-    <p>Autenticacao fake para liberar o CRUD.</p>
+    <p>Autenticacao fake para liberar o sistema.</p>
 
-    <label for="email">E-mail</label>
-    <dx-text-box
-      id="email"
-      [stylingMode]="'outlined'"
-      [(value)]="email"
-      [placeholder]="'Digite seu e-mail'"
-    />
+    <form [formGroup]="form" (ngSubmit)="submit()" class="login-form">
+      <mat-form-field appearance="outline">
+        <mat-label>E-mail</mat-label>
+        <input matInput type="email" formControlName="email" placeholder="Digite seu e-mail" />
+      </mat-form-field>
 
-    <label for="password">Senha</label>
-    <dx-text-box
-      id="password"
-      [mode]="'password'"
-      [stylingMode]="'outlined'"
-      [(value)]="password"
-      [placeholder]="'Digite sua senha'"
-    />
+      <mat-form-field appearance="outline">
+        <mat-label>Senha</mat-label>
+        <input
+          matInput
+          [type]="hidePassword ? 'password' : 'text'"
+          formControlName="password"
+          placeholder="Digite sua senha"
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          type="button"
+          [attr.aria-label]="'Mostrar ou ocultar senha'"
+          (click)="hidePassword = !hidePassword"
+        >
+          <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+      </mat-form-field>
+      <button mat-flat-button color="primary" type="submit">Entrar</button>
+    </form>
 
     @if (errorMessage) {
       <p class="error">{{ errorMessage }}</p>
     }
-
-    <dx-button
-      text="Entrar"
-      type="default"
-      stylingMode="contained"
-      (onClick)="submit()"
-    />
-  </div>
+  </mat-card>
 </div>
