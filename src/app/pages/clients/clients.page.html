@@ -1,0 +1,57 @@
+<div class="clients-page">
+  <header class="page-header">
+    <div>
+      <h1>Cadastro de Clientes</h1>
+      <p>CRUD com DevExtreme</p>
+    </div>
+
+    <dx-button
+      text="Sair"
+      type="danger"
+      stylingMode="contained"
+      (onClick)="logout()"
+    />
+  </header>
+
+  <dx-data-grid
+    [dataSource]="clients"
+    [showBorders]="true"
+    [rowAlternationEnabled]="true"
+    keyExpr="id"
+    (onRowInserting)="onRowInserting($event)"
+    (onRowUpdating)="onRowUpdating($event)"
+    (onRowRemoving)="onRowRemoving($event)"
+  >
+    <dxo-search-panel [visible]="true" [width]="280" placeholder="Buscar cliente..." />
+    <dxo-paging [pageSize]="8" />
+    <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[8, 16, 24]" />
+
+    <dxo-editing
+      mode="popup"
+      [allowAdding]="true"
+      [allowUpdating]="true"
+      [allowDeleting]="true"
+      [useIcons]="true"
+    >
+      <dxo-popup title="Cliente" [showTitle]="true" [width]="680" [height]="420" />
+      <dxo-form [colCount]="1">
+        <dxi-item dataField="fullName" [isRequired]="true" />
+        <dxi-item dataField="birthDate" editorType="dxDateBox" [isRequired]="true" />
+        <dxi-item dataField="email" [isRequired]="true" />
+      </dxo-form>
+    </dxo-editing>
+
+    <dxi-column dataField="fullName" caption="Nome completo">
+      <dxi-validation-rule type="required" message="Nome completo obrigatorio" />
+    </dxi-column>
+
+    <dxi-column dataField="birthDate" caption="Data nascimento" dataType="date">
+      <dxi-validation-rule type="required" message="Data de nascimento obrigatoria" />
+    </dxi-column>
+
+    <dxi-column dataField="email" caption="Email">
+      <dxi-validation-rule type="required" message="Email obrigatorio" />
+      <dxi-validation-rule type="email" message="Informe um email valido" />
+    </dxi-column>
+  </dx-data-grid>
+</div>

@@ -1,0 +1,34 @@
+<div class="login-wrapper">
+  <div class="login-card">
+    <h1>Login</h1>
+    <p>Autenticacao fake para liberar o CRUD.</p>
+
+    <label for="email">E-mail</label>
+    <dx-text-box
+      id="email"
+      [stylingMode]="'outlined'"
+      [(value)]="email"
+      [placeholder]="'Digite seu e-mail'"
+    />
+
+    <label for="password">Senha</label>
+    <dx-text-box
+      id="password"
+      [mode]="'password'"
+      [stylingMode]="'outlined'"
+      [(value)]="password"
+      [placeholder]="'Digite sua senha'"
+    />
+
+    @if (errorMessage) {
+      <p class="error">{{ errorMessage }}</p>
+    }
+
+    <dx-button
+      text="Entrar"
+      type="default"
+      stylingMode="contained"
+      (onClick)="submit()"
+    />
+  </div>
+</div>
